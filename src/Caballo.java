@@ -53,6 +53,9 @@ public class Caballo {
         return spermDoseCost + costBonus;
     }
 
+    public void testing(){
+
+    }
 
 
     public String getName() {
