@@ -8,6 +8,12 @@ public class Inventory {
         int option = 0;
         do{
             System.out.println("EL HATO COBRA\nBienvenido al administrador de inventario.");
+            System.out.println("Seleccione la tarea que desea realizar:");
+            System.out.println("1)\tAdministrar inventario");
+            System.out.println("2)\tIngresar Caballo");
+            System.out.println("3)\tVentas");
+            System.out.println("0)\tSALIR");
+            this.readInt();
 
         }while(option != 0);
     }
