@@ -115,4 +115,56 @@ public class Caballo {
     public float getWeight() {
         return weight;
     }
+
+    public void setRead(Scanner read) {
+        this.read = read;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
+    }
+
+    public void setStep(String step) {
+        this.step = step;
+    }
+
+    public void setDiet(String diet) {
+        this.diet = diet;
+    }
+
+    public void setDiseases(String diseases) {
+        this.diseases = diseases;
+        this.spermDoseCost = estimateDoseCost(this.price,this.diseases, this.age,this.awards);
+    }
+
+    public void setFatherName(String fatherName) {
+        this.fatherName = fatherName;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+        this.spermDoseCost = estimateDoseCost(this.price,this.diseases, this.age,this.awards);
+    }
+
+    public void setAwards(int awards) {
+        this.awards = awards;
+        this.spermDoseCost = estimateDoseCost(this.price,this.diseases, this.age,this.awards);
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+        this.spermDoseCost = estimateDoseCost(this.price,this.diseases, this.age,this.awards);
+    }
+
+    public void setWeight(float weight) {
+        this.weight = weight;
+    }
 }
