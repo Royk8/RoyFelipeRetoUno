@@ -6,6 +6,7 @@ public class Inventory {
     Scanner read = new Scanner(System.in);
     ArrayList<Caballo> horses = new ArrayList<Caballo>(); //Arreglo de objetos de la clase Caballo
 
+
     public void menu(){
         int option = 0;
         do{
@@ -20,7 +21,7 @@ public class Inventory {
                 case 1:
                     break;
                 case 2:
-                    horses.
+
                     break;
                 case 3:
                     break;

@@ -6,7 +6,8 @@ import java.util.Scanner;
 public class Caballo {
     Scanner read = new Scanner(System.in);
     private ArrayList<String> horseNames, horseBreeds, horseSteps, horseDiets, horseDiseases, horseFNames,
-                      horseCountries, horseAges, horseAwards, horsePrices, horseWeights;
+                      horseCountries;
+    private ArrayList<Integer>  horseAges, horseAwards, horsePrices, horseWeights;
 
     private String name, breed, step, diet, diseases, fatherName, country;
     private int age, awards;
@@ -96,20 +97,20 @@ public class Caballo {
         horseCountries.add(country);
 
         System.out.println("Nombre");
-        age = userIn.nextLine();
+        age = Integer.parseInt(userIn.nextLine());
         horseAges.add(age);
 
         System.out.println("Nombre");
-        name = userIn.nextLine();
-        horseNames.add(name);
+        age = Integer.parseInt(userIn.nextLine());
+        horseAges.add(age);
 
         System.out.println("Nombre");
-        name = userIn.nextLine();
-        horseNames.add(name);
+        age = Integer.parseInt(userIn.nextLine());
+        horseAges.add(age);
 
         System.out.println("Nombre");
-        name = userIn.nextLine();
-        horseNames.add(name);
+        age = Integer.parseInt(userIn.nextLine());
+        horseAges.add(age);
 
 
 
