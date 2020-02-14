@@ -1,11 +1,21 @@
 import static java.lang.Math.abs;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Caballo {
+    Scanner read = new Scanner(System.in);
+    private ArrayList<String> horseNames, horseBreeds, horseSteps, horseDiets, horseDiseases, horseFNames,
+                      horseCountries, horseAges, horseAwards, horsePrices, horseWeights;
+
     private String name, breed, step, diet, diseases, fatherName, country;
     private int age, awards;
     private double price, spermDoseCost;
     private float weight;
 
+    public Caballo(){
+
+    }
     public Caballo(String name, String breed, String step, String diet, String diseases, String fatherName,
                    String country, int age, int awards, double price, float weight) {
 
@@ -53,6 +63,70 @@ public class Caballo {
         return spermDoseCost + costBonus;
     }
 
+    public void enterDataHorse (){
+        Scanner userIn = new Scanner(System.in);
+        System.out.println("Ingrese la informacion del caballo:");
+
+        System.out.println("Nombre:");
+        name = userIn.nextLine();
+        horseNames.add(name);
+
+        System.out.println("Raza:");
+        breed = userIn.nextLine();
+        horseBreeds.add(breed);
+
+        System.out.println("Nombre");
+        step = userIn.nextLine();
+        horseSteps.add(step);
+
+        System.out.println("Nombre");
+        diet = userIn.nextLine();
+        horseDiets.add(diet);
+
+        System.out.println("Nombre");
+        diseases = userIn.nextLine();
+        horseDiseases.add(diseases);
+
+        System.out.println("Nombre");
+        fatherName = userIn.nextLine();
+        horseFNames.add(fatherName);
+
+        System.out.println("Nombre");
+        country = userIn.nextLine();
+        horseCountries.add(country);
+
+        System.out.println("Nombre");
+        age = userIn.nextLine();
+        horseAges.add(age);
+
+        System.out.println("Nombre");
+        name = userIn.nextLine();
+        horseNames.add(name);
+
+        System.out.println("Nombre");
+        name = userIn.nextLine();
+        horseNames.add(name);
+
+        System.out.println("Nombre");
+        name = userIn.nextLine();
+        horseNames.add(name);
+
+
+
+    }
+    public int readInt(int max, int min){
+        int n = min-1;
+        while(true){
+            try{
+                n = Integer.parseInt(read.nextLine());
+            }catch (InputMismatchException ex){
+                System.out.println("El numero debe ser entero y ");
+            }
+            if(n<= max && n>= min) break;
+            System.out.println("Debe estar entre "+min+" y "+max);
+        }
+        return n;
+    }
     public void testing(){
 
     }

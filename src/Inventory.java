@@ -1,8 +1,10 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Inventory {
     Scanner read = new Scanner(System.in);
+    ArrayList<Caballo> horses = new ArrayList<Caballo>(); //Arreglo de objetos de la clase Caballo
 
     public void menu(){
         int option = 0;
@@ -13,10 +15,12 @@ public class Inventory {
             System.out.println("2)\tIngresar Caballo");
             System.out.println("3)\tVentas");
             System.out.println("0)\tSALIR");
+            option = this.readInt(3,0);
             switch (option) {
                 case 1:
                     break;
                 case 2:
+                    horses.
                     break;
                 case 3:
                     break;
@@ -43,7 +47,9 @@ public class Inventory {
 
 
     public static void main(String[] args) {
+
         Inventory inventory = new Inventory();
         inventory.menu();
+
     }
 }
