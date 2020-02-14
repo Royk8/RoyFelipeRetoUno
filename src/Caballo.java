@@ -76,41 +76,40 @@ public class Caballo {
         breed = userIn.nextLine();
         horseBreeds.add(breed);
 
-        System.out.println("Nombre");
+        System.out.println("Paso:");
         step = userIn.nextLine();
         horseSteps.add(step);
 
-        System.out.println("Nombre");
+        System.out.println("Dieta:");
         diet = userIn.nextLine();
         horseDiets.add(diet);
 
-        System.out.println("Nombre");
+        System.out.println("Enfermedades");
         diseases = userIn.nextLine();
         horseDiseases.add(diseases);
 
-        System.out.println("Nombre");
+        System.out.println("Nombre del padre");
         fatherName = userIn.nextLine();
         horseFNames.add(fatherName);
 
-        System.out.println("Nombre");
+        System.out.println("Pais de origen");
         country = userIn.nextLine();
         horseCountries.add(country);
 
-        System.out.println("Nombre");
+        System.out.println("Edad");
         age = Integer.parseInt(userIn.nextLine());
         horseAges.add(age);
 
-        System.out.println("Nombre");
-        age = Integer.parseInt(userIn.nextLine());
-        horseAges.add(age);
+        System.out.println("Premios ganados");
+        awards = Integer.parseInt(userIn.nextLine());
+        horseAwards.add(awards);
 
-        System.out.println("Nombre");
-        age = Integer.parseInt(userIn.nextLine());
-        horseAges.add(age);
+        System.out.println("Precio:");
+        price =
 
-        System.out.println("Nombre");
-        age = Integer.parseInt(userIn.nextLine());
-        horseAges.add(age);
+
+        System.out.println("Peso:");
+        weight = Integer.parseInt(userIn.nextLine());
 
 
 
