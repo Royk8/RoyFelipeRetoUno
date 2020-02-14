@@ -4,10 +4,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Caballo {
+
     Scanner read = new Scanner(System.in);
-    private ArrayList<String> horseNames, horseBreeds, horseSteps, horseDiets, horseDiseases, horseFNames,
-                      horseCountries;
-    private ArrayList<Integer>  horseAges, horseAwards, horsePrices, horseWeights;
 
     private String name, breed, step, diet, diseases, fatherName, country;
     private int age, awards;
@@ -68,69 +66,7 @@ public class Caballo {
         Scanner userIn = new Scanner(System.in);
         System.out.println("Ingrese la informacion del caballo:");
 
-        System.out.println("Nombre:");
-        name = userIn.nextLine();
-        horseNames.add(name);
-
-        System.out.println("Raza:");
-        breed = userIn.nextLine();
-        horseBreeds.add(breed);
-
-        System.out.println("Paso:");
-        step = userIn.nextLine();
-        horseSteps.add(step);
-
-        System.out.println("Dieta:");
-        diet = userIn.nextLine();
-        horseDiets.add(diet);
-
-        System.out.println("Enfermedades");
-        diseases = userIn.nextLine();
-        horseDiseases.add(diseases);
-
-        System.out.println("Nombre del padre");
-        fatherName = userIn.nextLine();
-        horseFNames.add(fatherName);
-
-        System.out.println("Pais de origen");
-        country = userIn.nextLine();
-        horseCountries.add(country);
-
-        System.out.println("Edad");
-        age = Integer.parseInt(userIn.nextLine());
-        horseAges.add(age);
-
-        System.out.println("Premios ganados");
-        awards = Integer.parseInt(userIn.nextLine());
-        horseAwards.add(awards);
-
-        System.out.println("Precio:");
-        price =
-
-
-        System.out.println("Peso:");
-        weight = Integer.parseInt(userIn.nextLine());
-
-
-
     }
-    public int readInt(int max, int min){
-        int n = min-1;
-        while(true){
-            try{
-                n = Integer.parseInt(read.nextLine());
-            }catch (InputMismatchException ex){
-                System.out.println("El numero debe ser entero y ");
-            }
-            if(n<= max && n>= min) break;
-            System.out.println("Debe estar entre "+min+" y "+max);
-        }
-        return n;
-    }
-    public void testing(){
-
-    }
-
 
     public String getName() {
         return name;
