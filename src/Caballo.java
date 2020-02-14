@@ -55,7 +55,7 @@ public class Caballo {
                 premios ganados en competiciones, hasta un maximo de 10. */
             costBonus += spermDoseCost * (awards * 5)/100f;
         }
-        if(diseases != "none"){
+        if(diseases != "Ninguna"){
             costBonus -= spermDoseCost * (0.3f);
         }
 
