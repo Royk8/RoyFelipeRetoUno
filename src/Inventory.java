@@ -13,7 +13,16 @@ public class Inventory {
             System.out.println("2)\tIngresar Caballo");
             System.out.println("3)\tVentas");
             System.out.println("0)\tSALIR");
-            this.readInt();
+            switch (option) {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+            }
 
         }while(option != 0);
     }
