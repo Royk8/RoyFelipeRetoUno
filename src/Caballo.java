@@ -5,8 +5,6 @@ import java.util.Scanner;
 
 public class Caballo {
 
-    Scanner read = new Scanner(System.in);
-
     private String name, breed, step, diet, diseases, fatherName, country;
     private int age, awards;
     private double price, spermDoseCost;
@@ -114,10 +112,6 @@ public class Caballo {
 
     public float getWeight() {
         return weight;
-    }
-
-    public void setRead(Scanner read) {
-        this.read = read;
     }
 
     public void setName(String name) {
