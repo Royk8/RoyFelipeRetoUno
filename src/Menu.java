@@ -168,7 +168,7 @@ public class Menu {
     public void editHorse(){
         System.out.println("Ingrese el indice del Caballo que desea modificar: ");
         for(int i = 0; i < horsesList.size(); i++){
-            System.out.println(i+1 + horsesList.get(i).getName());
+            System.out.println(i+1 +" "+ horsesList.get(i).getName());
         }
         int optionIn = readInt(1, horsesList.size())-1;
         System.out.println("La informacion del Caballo seleccionado es: ");
@@ -251,7 +251,26 @@ public class Menu {
     }
 
     public void deleteHorse(){
+        if(horsesList.size() == 0){
+            System.out.println("No se encuentra ningun caballo en el registro ");
+            return;
+        }
+        System.out.println("Seleccione el indice del Caballo que desea borrar: ");
+        for(int i = 0; i < horsesList.size(); i++){
+            System.out.println((i+1) + ". "+ horsesList.get(i).getName());
+        }
+            int delIndex;
+            Scanner IndexIn= new Scanner(System.in);
+            delIndex = readInt(1,horsesList.size());
 
+            if(delIndex-1 !=-1){
+                System.out.println("El Caballo: "+horsesList.get(delIndex-1).getName()+" ha sido eliminado satisfactoriamente");
+                horsesList.remove(delIndex-1);
+                // AQUI BORRA EL NOMBRE DEL CABALLO DE LA LISTA PERO EL RESTO DE INFORMACION SIGUE GUARDAD, FALTA ELIMINARLA
+
+            }else{
+                System.out.println("El Caballo no se encuentra en la lista\n");
+            }
     }
 
     public void checkSells(){
