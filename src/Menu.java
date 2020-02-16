@@ -1,6 +1,6 @@
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.io.*;
+import java.time.YearMonth;
+import java.util.*;
 
 public class Menu {
     Scanner read = new Scanner(System.in);
@@ -8,15 +8,22 @@ public class Menu {
     ArrayList<String> breedList;
     ArrayList<String> stepList;
     ArrayList<String> diseaseList;
+    ArrayList<Venta> sellsList;
+    ArrayList<YearMonth> monthsList;
 
-    public Menu(){
+    public Menu() throws IOException{
         horsesList = new ArrayList<Caballo>(); //Arreglo de objetos de la clase Caballo
         breedList = new ArrayList<String>();
         stepList = new ArrayList<String>();
         diseaseList = new ArrayList<String>();
         diseaseList.add("Ninguna");
+        sellsList = new ArrayList<Venta>();
+        monthsList = new ArrayList<YearMonth>();
+        readDB();
+
     }
-    public void menu(){
+
+    public void menu()throws IOException{
         int option = 0;
         do{
             System.out.println("EL HATO COBRA\nBienvenido al administrador de inventario.");
@@ -34,6 +41,7 @@ public class Menu {
                     break;
             }
         }while(option != 0);
+        saveChanges();
         System.out.println("Hasta luego.");
     }
 
@@ -62,7 +70,6 @@ public class Menu {
                     break;
             }
         }while(option1 != 0);
-
     }
 
     void menuVentas(){
@@ -90,17 +97,13 @@ public class Menu {
 
     }
 
-
-
     public void checkHorses(){
         if(horsesList.size() == 0){
             System.out.println("No se encuentra ni un caballo en el registro");
             return;
         }
         System.out.println("Seleccione el Caballo del que desea consultar su informacion: ");
-        for(int i = 0; i < horsesList.size(); i++){
-            System.out.println((i+1) + ". "+ horsesList.get(i).getName());
-        }
+        printHorses();
         int optionIn = readInt(1, horsesList.size())-1;
         System.out.println("La informacion del Caballo seleccionado es: ");
         System.out.println("Nombre: "+horsesList.get(optionIn).getName());
@@ -161,15 +164,13 @@ public class Menu {
 
         //Creacion de nueva instancia de caballo
         Caballo caballo = new Caballo(name, breedList.get(breedIndex), stepList.get(stepIndex), diet,
-                diseaseList.get(diseaseIndex), fatherName, country, age, awards, price, weight);
+                diseaseList.get(diseaseIndex), fatherName, country, age, awards, price, weight,0);
         horsesList.add(caballo);
     }
 
     public void editHorse(){
         System.out.println("Ingrese el indice del Caballo que desea modificar: ");
-        for(int i = 0; i < horsesList.size(); i++){
-            System.out.println(i+1 +" "+ horsesList.get(i).getName());
-        }
+        printHorses();
         int optionIn = readInt(1, horsesList.size())-1;
         System.out.println("La informacion del Caballo seleccionado es: ");
         System.out.println("1. Nombre: "+horsesList.get(optionIn).getName());
@@ -256,32 +257,132 @@ public class Menu {
             return;
         }
         System.out.println("Seleccione el indice del Caballo que desea borrar: ");
-        for(int i = 0; i < horsesList.size(); i++){
-            System.out.println((i+1) + ". "+ horsesList.get(i).getName());
+        printHorses();
+        System.out.println("0. No borrar ninguno.");
+        int delIndex = readInt(1,horsesList.size());
+
+        if(delIndex != 0) {
+            System.out.println("El Caballo: " + horsesList.get(delIndex - 1).getName() + " ha sido eliminado satisfactoriamente");
+            horsesList.remove(delIndex - 1);
         }
-            int delIndex;
-            Scanner IndexIn= new Scanner(System.in);
-            delIndex = readInt(1,horsesList.size());
 
-            if(delIndex-1 !=-1){
-                System.out.println("El Caballo: "+horsesList.get(delIndex-1).getName()+" ha sido eliminado satisfactoriamente");
-                horsesList.remove(delIndex-1);
-
-            }else{
-                System.out.println("El Caballo no se encuentra en la lista\n");
-            }
     }
 
     public void checkSells(){
+        System.out.println("Seleccione una opcion.");
+        System.out.println("1. Ver todas las ventas");
+        System.out.println("2. Ver ventas de un mes especifico");
+        System.out.println("3. Ver promedio de ventas por mes");
+        int option = readInt(1,3);
+        switch (option){
+            case 1:
+                checkAllSells();
+                break;
+            case 2:
+                checkMonthSells();
+                break;
+            case 3:
+                checkAverageSells();
+                break;
+        }
+    }
 
+    public void checkAllSells(){
+        if(sellsList.isEmpty()){
+            System.out.println("No hay ventas registradas.");
+            return;
+        }
+        System.out.println("Las ventas son: ");
+        for(int i = 0; i < sellsList.size(); i++){
+            System.out.println((i+1)+ ". " + sellsList.get(i).getName() +  "\t" +
+                    sellsList.get(i).printableDate());
+        }
+    }
+
+    public void checkMonthSells(){
+        System.out.println("Seleccione un mes ");
+        for (int i = 0; i < monthsList.size(); i++){
+            System.out.println((i+1) + ". " + monthsList.get(i));
+        }
+        int option = readInt(1,monthsList.size()) -1;
+        double totalSells = 0;
+        for(int i = 0; i < sellsList.size(); i++){
+            if(sellsList.get(i).getMonth().equals(monthsList.get(option))){
+                totalSells += sellsList.get(i).getSellPrice();
+                System.out.println(sellsList.get(i).getName() + "\t" + sellsList.get(i).printableDate() +
+                        "\t " + sellsList.get(i).getSellPrice());
+            }
+        }
+        System.out.println("Las ventas totales del mes son: " + totalSells+ "\n");
+    }
+
+    public void checkAverageSells(){
+        double totalSells = 0;
+        for(int i = 0; i < sellsList.size(); i++){
+            totalSells += sellsList.get(i).getSellPrice();
+        }
+        double averageSells = totalSells / monthsList.size();
+        System.out.println("El promedio de ventas por mes es : " + averageSells);
     }
 
     public void addSell(){
+        System.out.println("Seleccione el caballo del que fue vendida la pajilla");
+        printHorses();
+        int sellIndex = readInt(1,horsesList.size()) -1;
+        System.out.println("Cuando fue la venta?");
+        System.out.println("1. Hoy");
+        System.out.println("2. Otra Fecha");
+        GregorianCalendar sellDate;
+        YearMonth monthSell = null;
+        int when = readInt(1,2);
+        if(when == 1){
+            sellDate = new GregorianCalendar();
+            monthSell = YearMonth.now();
+        }else{
+            int year, month, day;
+            System.out.print("Ingrese el año: ");
+            year = readInt(1900,2100);
+            System.out.print("Ingrese el numero del mes: ");
+            month = readInt(1,12);
+            //Lectura de dia, evitando errores de ingreso de dias mayores al del mes.
+            YearMonth yearMonth = YearMonth.of(year,month);
+            int checkDays = yearMonth.lengthOfMonth();
+            System.out.print("Ingrese el dia: ");
+            day = readInt(1,checkDays);
 
+            sellDate = new GregorianCalendar(year,month-1,day);
+            monthSell = yearMonth.of(year,month);
+        }
+
+        Venta venta = new Venta(horsesList.get(sellIndex).getName(),sellDate,
+                horsesList.get(sellIndex).getSpermDoseCost());
+        sellsList.add(venta);
+        horsesList.get(sellIndex).increaseSells();
+        if(!monthsList.contains(monthSell)) monthsList.add(monthSell);
+        sortSells();
     }
 
     public void mostLovedHorse(){
+        int mostLovedHorse = 0;
+        int mostLovedHorseIndex = 0;
+        for(int i = 0; i < horsesList.size(); i++){
+            if(mostLovedHorse < horsesList.get(i).getSells()){
+                mostLovedHorse = horsesList.get(i).getSells();
+                mostLovedHorseIndex = i;
+            }
+        }
+        System.out.println("El caballo mas apreciado es: " + horsesList.get(mostLovedHorseIndex).getName());
+    }
 
+    /**
+     * Aqui en adelante se encuentras los metodos adicionales que son necesarios para el funcionamiento
+     * del programa.
+     */
+
+    public void printHorses(){
+        for(int i = 0; i < horsesList.size(); i++){
+            System.out.println((i+1) + ". "+ horsesList.get(i).getName());
+        }
     }
 
     public int addBreed(String name){
@@ -327,6 +428,18 @@ public class Menu {
             diseaseOption = diseaseList.size();
         }
         return diseaseOption-1;
+    }
+
+    /**
+     * Metodo que organiza la lista de ventas de acuerdo a su fecha.
+     */
+    public void sortSells(){
+        Collections.sort(sellsList, new Comparator<Venta>() {
+            @Override
+            public int compare(Venta o1, Venta o2) {
+                return o1.getDate().getTime().compareTo(o2.getDate().getTime());
+            }
+        });
     }
 
     public int readInt(int min){
@@ -383,5 +496,99 @@ public class Menu {
             System.out.println("Debe ser mayor a  "+min);
         }
         return n;
+    }
+
+    public void readDB() throws IOException {
+        BufferedReader readFile = null;
+        File horseFile = new File("Horses.txt");
+        if(!horseFile.exists()) return;
+        try {
+            readFile = new BufferedReader(new FileReader(horseFile));
+            String line;
+            while ((line = readFile.readLine()) != null) {
+                String[] fields = line.split(";");
+                String name = fields[0];
+                String breed = fields[1];
+                String step = fields[2];
+                String diet = fields[3];
+                String disease = fields[4];
+                String fatherName = fields[5];
+                String country = fields[6];
+                int age = Integer.parseInt(fields[7]);
+                int awards = Integer.parseInt(fields[8]);
+                double price = Double.parseDouble(fields[9]);
+                float weight = Float.parseFloat(fields[10]);
+                int sells = Integer.parseInt(fields[11]);
+                Caballo caballo = new Caballo(name,breed,step,diet,disease,fatherName,country,
+                        age,awards,price,weight,sells);
+                horsesList.add(caballo);
+                if(!breedList.contains(breed)) breedList.add(breed);
+                if(!stepList.contains(step)) stepList.add(step);
+                if(!diseaseList.contains(disease)) diseaseList.add(disease);
+            }
+        }finally {
+            if(readFile != null){
+                readFile.close();
+            }
+        }
+
+        File sellsFile = new File("Sells.txt");
+        if(!sellsFile.exists()) return;
+        try {
+            readFile = new BufferedReader(new FileReader(sellsFile));
+            String line;
+            while ((line = readFile.readLine()) != null) {
+                String[] fields = line.split(";");
+                String name = fields[0];
+                int year = Integer.parseInt(fields[1]);
+                int month = Integer.parseInt(fields[2]);
+                int day = Integer.parseInt(fields[3]);
+                double sellPrice = Double.parseDouble(fields[4]);
+                GregorianCalendar sellDate = new GregorianCalendar(year,month-1,day);
+                YearMonth yearMonth = YearMonth.of(year,month);
+                Venta venta = new Venta(name,sellDate,sellPrice);
+                sellsList.add(venta);
+                monthsList.add(yearMonth);
+            }
+        }finally {
+            if(readFile != null){
+                readFile.close();
+            }
+        }
+    }
+
+    public void saveChanges() throws IOException{
+        File horseFile = new File("Horses.txt");
+        if(!horseFile.exists()) horseFile.createNewFile();
+        PrintWriter writeFile = null;
+        try{
+            writeFile = new PrintWriter(new FileWriter(horseFile));
+            String line;
+            for(int i = 0; i < horsesList.size(); i++){
+                line = horsesList.get(i).toString();
+                writeFile.println(line);
+            }
+        }finally {
+            if (writeFile != null) {
+                System.out.println("Horses saved");
+                writeFile.close();
+            }
+        }
+
+        File sellsFile = new File("Sells.txt");
+        if(!sellsFile.exists()) sellsFile.createNewFile();
+        try{
+            writeFile = new PrintWriter(new FileWriter(sellsFile));
+            String line;
+            for(int i = 0; i < sellsList.size(); i++){
+                line = sellsList.get(i).toString();
+                writeFile.println(line);
+            }
+        }finally {
+            if (writeFile != null) {
+                System.out.println("Sells saved");
+                writeFile.close();
+            }
+        }
     }
 }

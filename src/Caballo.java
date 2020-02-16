@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Caballo {
 
     private String name, breed, step, diet, diseases, fatherName, country;
-    private int age, awards;
+    private int age, awards, sells;
     private double price, spermDoseCost;
     private float weight;
 
@@ -14,7 +14,7 @@ public class Caballo {
 
     }
     public Caballo(String name, String breed, String step, String diet, String diseases, String fatherName,
-                   String country, int age, int awards, double price, float weight) {
+                   String country, int age, int awards, double price, float weight, int sells) {
 
         this.name = name;
         this.breed = breed;
@@ -27,6 +27,7 @@ public class Caballo {
         this.awards = awards;
         this.price = price;
         this.weight = weight;
+        this.sells = sells;
 
         this.spermDoseCost = estimateDoseCost(price, diseases, age, awards);
     }
@@ -64,6 +65,10 @@ public class Caballo {
         Scanner userIn = new Scanner(System.in);
         System.out.println("Ingrese la informacion del caballo:");
 
+    }
+
+    public void increaseSells(){
+        this.sells++;
     }
 
     public String getName() {
@@ -160,5 +165,18 @@ public class Caballo {
 
     public void setWeight(float weight) {
         this.weight = weight;
+    }
+
+    public int getSells() {
+        return sells;
+    }
+
+    public void setSells(int sells) {
+        this.sells = sells;
+    }
+
+    public String toString(){
+        return name + ";" + breed + ";" + step + ";" + diet + ";" + diseases + ";" + fatherName + ";" +
+                country + ";" + age + ";" + awards + ";" + price + ";" + weight + ";" + sells;
     }
 }
