@@ -266,7 +266,6 @@ public class Menu {
             if(delIndex-1 !=-1){
                 System.out.println("El Caballo: "+horsesList.get(delIndex-1).getName()+" ha sido eliminado satisfactoriamente");
                 horsesList.remove(delIndex-1);
-                // AQUI BORRA EL NOMBRE DEL CABALLO DE LA LISTA PERO EL RESTO DE INFORMACION SIGUE GUARDAD, FALTA ELIMINARLA
 
             }else{
                 System.out.println("El Caballo no se encuentra en la lista\n");
