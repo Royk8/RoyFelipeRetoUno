@@ -5,12 +5,18 @@ import java.util.Scanner;
 
 public class Caballo {
 
+    /** Declaration of parameters
+     */
+
     private String name, breed, step, diet, diseases, fatherName, country;
     private int age, awards, sells;
     private double price, spermDoseCost;
     private float weight;
 
     public Caballo(){
+
+        /** Constructor
+         */
 
     }
     public Caballo(String name, String breed, String step, String diet, String diseases, String fatherName,
@@ -61,15 +67,12 @@ public class Caballo {
         return spermDoseCost + costBonus;
     }
 
-    public void enterDataHorse (){
-        Scanner userIn = new Scanner(System.in);
-        System.out.println("Ingrese la informacion del caballo:");
-
-    }
-
     public void increaseSells(){
         this.sells++;
     }
+
+    /** Getters and setters
+     */
 
     public String getName() {
         return name;
@@ -174,6 +177,9 @@ public class Caballo {
     public void setSells(int sells) {
         this.sells = sells;
     }
+
+    /** Method to convert the parameters to string
+     */
 
     public String toString(){
         return name + ";" + breed + ";" + step + ";" + diet + ";" + diseases + ";" + fatherName + ";" +

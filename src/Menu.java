@@ -23,6 +23,10 @@ public class Menu {
 
     }
 
+    /** menu(): Welcome message & show the submenus menuInvenario()
+     * and menuVentas()
+     */
+
     public void menu()throws IOException{
         int option = 0;
         do{
@@ -44,6 +48,9 @@ public class Menu {
         saveChanges();
         System.out.println("Hasta luego.");
     }
+
+    /** menuInventario(): This method shows five inventary options to user
+     */
 
     void menuInventario(){
         int option1 = 0;
@@ -72,6 +79,8 @@ public class Menu {
         }while(option1 != 0);
     }
 
+    // FALTAAAAAAAAAAAAAAAAAA
+
     void menuVentas(){
         int option2 = 0;
         do{
@@ -97,6 +106,9 @@ public class Menu {
 
     }
 
+    /** menuVentas(): This method print the information about the selected horse
+     */
+
     public void checkHorses(){
         if(horsesList.size() == 0){
             System.out.println("No se encuentra ni un caballo en el registro");
@@ -119,6 +131,10 @@ public class Menu {
         System.out.println("Precio del Caballo: "+horsesList.get(optionIn).getPrice());
         System.out.println("Precio de Pajilla: "+horsesList.get(optionIn).getSpermDoseCost());
     }
+
+    /** addHorse(): This method save step by step the information that the user
+     * write about the horses
+     */
 
     public void addHorse(){
         //Ingreso de nombre.
@@ -167,6 +183,9 @@ public class Menu {
                 diseaseList.get(diseaseIndex), fatherName, country, age, awards, price, weight,0);
         horsesList.add(caballo);
     }
+
+    /** editHorse(): This method
+     */
 
     public void editHorse(){
         System.out.println("Ingrese el indice del Caballo que desea modificar: ");
@@ -251,6 +270,9 @@ public class Menu {
         }
     }
 
+    /** deleteHorse(): Se pide seleccion el caballo que se desea borrar.
+       Se borra.
+     */
     public void deleteHorse(){
         if(horsesList.size() == 0){
             System.out.println("No se encuentra ningun caballo en el registro ");
