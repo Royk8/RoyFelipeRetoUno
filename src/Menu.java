@@ -23,7 +23,7 @@ public class Menu {
 
     }
 
-    /** menu(): Welcome message & show the submenus menuInvenario()
+    /** Welcome message & show the submenus menuInvenario()
      * and menuVentas()
      */
 
@@ -49,7 +49,7 @@ public class Menu {
         System.out.println("Hasta luego.");
     }
 
-    /** menuInventario(): This method shows five inventary options to user
+    /** This method shows five inventory options to user
      */
 
     void menuInventario(){
@@ -106,7 +106,7 @@ public class Menu {
 
     }
 
-    /** menuVentas(): This method print the information about the selected horse
+    /** This method print the information about the selected horse
      */
 
     public void checkHorses(){
@@ -132,7 +132,7 @@ public class Menu {
         System.out.println("Precio de Pajilla: "+horsesList.get(optionIn).getSpermDoseCost());
     }
 
-    /** addHorse(): This method save step by step the information that the user
+    /** This method save step by step the information that the user
      * write about the horses
      */
 
@@ -184,7 +184,7 @@ public class Menu {
         horsesList.add(caballo);
     }
 
-    /** editHorse(): This method
+    /** This method
      */
 
     public void editHorse(){
@@ -270,8 +270,8 @@ public class Menu {
         }
     }
 
-    /** deleteHorse(): Se pide seleccion el caballo que se desea borrar.
-       Se borra.
+    /** This method asks which horse you want to remove
+       so, the horse is deleted
      */
     public void deleteHorse(){
         if(horsesList.size() == 0){
@@ -289,6 +289,9 @@ public class Menu {
         }
 
     }
+
+    /** This method is used to see the list of sells
+     */
 
     public void checkSells(){
         System.out.println("Seleccione una opcion.");
@@ -308,6 +311,9 @@ public class Menu {
                 break;
         }
     }
+
+    /**
+     */
 
     public void checkAllSells(){
         if(sellsList.isEmpty()){
@@ -397,8 +403,7 @@ public class Menu {
     }
 
     /**
-     * Aqui en adelante se encuentras los metodos adicionales que son necesarios para el funcionamiento
-     * del programa.
+     * Additional methods necessaries to run the program correctly
      */
 
     public void printHorses(){
