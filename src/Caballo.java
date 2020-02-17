@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/** This class create the horse objects
+ */
+
 public class Caballo {
 
     /** Declaration of parameters

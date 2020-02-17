@@ -3,6 +3,9 @@ import java.text.NumberFormat;
 import java.time.YearMonth;
 import java.util.*;
 
+/** This class has the methods to interact to the user with the inventory and sells
+  */
+
 public class Menu {
     Scanner read = new Scanner(System.in);
     //Formato necesario para impresion de cantidades de dinero
@@ -15,7 +18,7 @@ public class Menu {
     ArrayList<YearMonth> monthsList;
 
     /**
-     * Constructor del menu, su funcion es instanciar las listas y leer el archivo de texto
+     * Menu constructor, its function is instantiate list and read the text file
      * @throws IOException
      */
     public Menu() throws IOException{

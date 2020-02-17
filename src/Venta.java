@@ -7,6 +7,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import static java.lang.Math.abs;
 
+/** This class has the getters and setter about the sells and date methods
+ */
+
 public class Venta {
 
     private String name;
