@@ -58,7 +58,8 @@ public class Venta {
         return date;
     }
 
-
+    /** Convert the information to string
+     */
 
     public String toString(){
         SimpleDateFormat dateFileFormat = new SimpleDateFormat("yyyy;MM;dd");
