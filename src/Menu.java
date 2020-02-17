@@ -299,7 +299,7 @@ public class Menu {
 
     }
 
-    /** This method is used to see the list of sells
+    /** This is a menu that show all options about the sales
      */
 
     public void checkSells(){
@@ -321,7 +321,7 @@ public class Menu {
         }
     }
 
-    /**
+    /** This method is used to see the list of all sells
      */
 
     public void checkAllSells(){
@@ -335,6 +335,9 @@ public class Menu {
                     sellsList.get(i).printableDate() + "\t" + money.format(sellsList.get(i).getSellPrice()));
         }
     }
+
+    /** This method is used to see the list of monthly sells
+     */
 
     public void checkMonthSells(){
         System.out.println("Seleccione un mes ");
@@ -353,6 +356,9 @@ public class Menu {
         System.out.println("Las ventas totales del mes son: " + money.format(totalSells)+ "\n");
     }
 
+    /** This method is used to see the list of average sells
+     */
+
     public void checkAverageSells(){
         double totalSells = 0;
         for(int i = 0; i < sellsList.size(); i++){
@@ -361,6 +367,9 @@ public class Menu {
         double averageSells = totalSells / monthsList.size();
         System.out.println("El promedio de ventas por mes es : " + money.format(averageSells));
     }
+
+    /** This method is used to add a new sell
+     */
 
     public void addSell(){
         System.out.println("Seleccione el caballo del que fue vendida la pajilla");
@@ -398,6 +407,9 @@ public class Menu {
         if(!monthsList.contains(monthSell)) monthsList.add(monthSell);
         sortSells();
     }
+
+    /** This method returns which horse has more demand with respect to its straw
+     */
 
     public void mostLovedHorse(){
         int mostLovedHorse = 0;
