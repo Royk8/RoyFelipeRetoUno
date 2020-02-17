@@ -59,8 +59,7 @@ public class Menu {
         System.out.println("Hasta luego.");
     }
 
-    /**
-     * Submenu encargado de controlar las funciones relacionadas con el inventario de caballos
+    /** Submenu to control the functions about the horse inventory
      */
 
     void menuInventario(){
@@ -91,7 +90,7 @@ public class Menu {
     }
 
     /**
-     * Submenu encargado de controlar los funciones relacionadas a las ventas
+     * Submenu to control the functions about the sells
      */
     void menuVentas(){
         int option2 = 0;
@@ -144,8 +143,8 @@ public class Menu {
         System.out.println("Precio de Pajilla: "+money.format(horsesList.get(optionIn).getSpermDoseCost()));
     }
 
-    /** addHorse(): This method save step by step the information that the user
-     * write about the horses ans creates new
+    /** This method save step by step the information that the user
+     * write about the horse and creates new one
      */
 
     public void addHorse(){
@@ -196,7 +195,7 @@ public class Menu {
         horsesList.add(caballo);
     }
 
-    /** This method
+    /** This method allows editing some horse data or all its data
      */
 
     public void editHorse(){
