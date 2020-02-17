@@ -79,7 +79,8 @@ public class Menu {
         }while(option1 != 0);
     }
 
-    // FALTAAAAAAAAAAAAAAAAAA
+    /** This method shows four sales options to user
+     */
 
     void menuVentas(){
         int option2 = 0;
