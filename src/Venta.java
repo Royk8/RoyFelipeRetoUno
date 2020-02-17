@@ -19,6 +19,9 @@ public class Venta {
         this.sellPrice = sellPrice;
     }
 
+    /** Getters and setters
+     */
+
     public String getName() {
         return name;
     }
@@ -39,15 +42,23 @@ public class Venta {
         this.date = date;
     }
 
+    /** Get the month about sales
+     */
+
     public YearMonth getMonth(){
         return YearMonth.parse(printableDate(), DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
     }
+
+    /** Print the date
+     */
 
     public String printableDate(){
         SimpleDateFormat simpleFormat = new SimpleDateFormat("dd-MMM-yyyy");
         String date = simpleFormat.format(this.date.getTime());
         return date;
     }
+
+
 
     public String toString(){
         SimpleDateFormat dateFileFormat = new SimpleDateFormat("yyyy;MM;dd");
