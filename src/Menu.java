@@ -1,9 +1,12 @@
 import java.io.*;
+import java.text.NumberFormat;
 import java.time.YearMonth;
 import java.util.*;
 
 public class Menu {
     Scanner read = new Scanner(System.in);
+    //Formato necesario para impresion de cantidades de dinero
+    NumberFormat money = NumberFormat.getCurrencyInstance();
     ArrayList<Caballo> horsesList;
     ArrayList<String> breedList;
     ArrayList<String> stepList;
@@ -11,8 +14,12 @@ public class Menu {
     ArrayList<Venta> sellsList;
     ArrayList<YearMonth> monthsList;
 
+    /**
+     * Constructor del menu, su funcion es instanciar las listas y leer el archivo de texto
+     * @throws IOException
+     */
     public Menu() throws IOException{
-        horsesList = new ArrayList<Caballo>(); //Arreglo de objetos de la clase Caballo
+        horsesList = new ArrayList<Caballo>();
         breedList = new ArrayList<String>();
         stepList = new ArrayList<String>();
         diseaseList = new ArrayList<String>();
@@ -49,7 +56,8 @@ public class Menu {
         System.out.println("Hasta luego.");
     }
 
-    /** This method shows five inventory options to user
+    /**
+     * Submenu encargado de controlar las funciones relacionadas con el inventario de caballos
      */
 
     void menuInventario(){
@@ -79,9 +87,9 @@ public class Menu {
         }while(option1 != 0);
     }
 
-    /** This method shows four sales options to user
+    /**
+     * Submenu encargado de controlar los funciones relacionadas a las ventas
      */
-
     void menuVentas(){
         int option2 = 0;
         do{
@@ -129,12 +137,12 @@ public class Menu {
         System.out.println("Edad: "+horsesList.get(optionIn).getAge());
         System.out.println("Numero de premios: "+horsesList.get(optionIn).getAwards());
         System.out.println("Peso: "+horsesList.get(optionIn).getWeight());
-        System.out.println("Precio del Caballo: "+horsesList.get(optionIn).getPrice());
-        System.out.println("Precio de Pajilla: "+horsesList.get(optionIn).getSpermDoseCost());
+        System.out.println("Precio del Caballo: "+money.format(horsesList.get(optionIn).getPrice()));
+        System.out.println("Precio de Pajilla: "+money.format(horsesList.get(optionIn).getSpermDoseCost()));
     }
 
-    /** This method save step by step the information that the user
-     * write about the horses
+    /** addHorse(): This method save step by step the information that the user
+     * write about the horses ans creates new
      */
 
     public void addHorse(){
@@ -203,8 +211,8 @@ public class Menu {
         System.out.println("8. Edad: "+horsesList.get(optionIn).getAge());
         System.out.println("9. Numero de premios: "+horsesList.get(optionIn).getAwards());
         System.out.println("10. Peso: "+horsesList.get(optionIn).getWeight());
-        System.out.println("11. Precio del Caballo: "+horsesList.get(optionIn).getPrice());
-        System.out.println("12. Precio de Pajilla: "+horsesList.get(optionIn).getSpermDoseCost());
+        System.out.println("11. Precio del Caballo: "+money.format(horsesList.get(optionIn).getPrice()));
+        System.out.println("12. Precio de Pajilla: "+money.format(horsesList.get(optionIn).getSpermDoseCost()));
         System.out.println("0. Modificar toda la informacion: ");
         int editOption = readInt(0,12);
         switch (editOption){
@@ -324,7 +332,7 @@ public class Menu {
         System.out.println("Las ventas son: ");
         for(int i = 0; i < sellsList.size(); i++){
             System.out.println((i+1)+ ". " + sellsList.get(i).getName() +  "\t" +
-                    sellsList.get(i).printableDate());
+                    sellsList.get(i).printableDate() + "\t" + money.format(sellsList.get(i).getSellPrice()));
         }
     }
 
@@ -342,10 +350,10 @@ public class Menu {
             if(sellsList.get(i).getMonth().equals(monthsList.get(option))){
                 totalSells += sellsList.get(i).getSellPrice();
                 System.out.println(sellsList.get(i).getName() + "\t" + sellsList.get(i).printableDate() +
-                        "\t " + sellsList.get(i).getSellPrice());
+                        "\t " + money.format(sellsList.get(i).getSellPrice()));
             }
         }
-        System.out.println("Las ventas totales del mes son: " + totalSells+ "\n");
+        System.out.println("Las ventas totales del mes son: " + money.format(totalSells)+ "\n");
     }
 
     /** This method is used to see the list of average sells
@@ -357,7 +365,7 @@ public class Menu {
             totalSells += sellsList.get(i).getSellPrice();
         }
         double averageSells = totalSells / monthsList.size();
-        System.out.println("El promedio de ventas por mes es : " + averageSells);
+        System.out.println("El promedio de ventas por mes es : " + money.format(averageSells));
     }
 
     /** This method is used to add a new sell
